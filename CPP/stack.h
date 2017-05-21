@@ -2,17 +2,22 @@
 class MyStack
 {
 private:
-#if(0)
-	const int MAX_STACK_SIZE = 100;
-	int data_array[MAX_STACK_SIZE];
+#if(1)
+	//const int MAX_STACK_SIZE = 100;
+	static const int MaxBufferSize;
+	int *buffer;
 #else
-	int data_array[100];
+#define MAX_STACK_SIZE 100
+	int data_array[MAX_STACK_SIZE];
 #endif
 	int pos;
 
 public:
 	MyStack();
-	int push();
+	MyStack(int _size);
+	~MyStack();
+	int push(int _data);
 	int pop();
 	int peek();
+	void print_stack();
 };
