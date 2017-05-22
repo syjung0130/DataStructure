@@ -30,6 +30,11 @@ MyStack::~MyStack()
 
 int MyStack::push(int _data)
 {
+	if(pos >= MaxBufferSize)
+	{
+		cout<<"Stack is full !!!!"<<endl;
+		return 0;
+	}
 	++pos;
 	buffer[pos] = _data;
 	return 1;
@@ -37,8 +42,18 @@ int MyStack::push(int _data)
 
 int MyStack::pop()
 {
-	 return buffer[pos];
-	 pos--;
+	int ret = 0;
+
+	if(pos < 0)
+	{
+		cout<<"Stack is empty!!!!"<<endl;
+		return 0;
+	}
+
+	ret = buffer[pos];
+	pos--;
+
+	return ret;
 }
 
 int MyStack::peek()

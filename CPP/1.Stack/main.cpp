@@ -12,7 +12,9 @@ int main()
 
 	m_stack->print_stack();
 
-	cout<<"[1st] peek : "<<m_stack->peek()<<" pop : "<<m_stack->pop()<<endl;
-	cout<<"[2st] peek : "<<m_stack->peek()<<" pop : "<<m_stack->pop()<<endl;
+	cout<<"[1st] peek : "<<m_stack->peek()<<endl;
+	cout<<"[1st] pop : "<<m_stack->pop()<<endl;
+	cout<<"[2nd] peek : "<<m_stack->peek()<<endl;
+	cout<<"[2nd] pop : "<<m_stack->pop()<<endl;
 
 }
