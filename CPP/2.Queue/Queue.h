@@ -26,13 +26,7 @@ private:
 #if(0)
 	int data[100];
 #endif
-/*
-	int *buffer;
-	int front;
-	int rear;
-	int size;
-	static const int maxQueueLen;
-*/
+
 public:
 	ArrayQueue();
 	ArrayQueue(int _size);
@@ -49,13 +43,7 @@ private:
 #if(0)
 	int data[100];
 #endif
-/*
-	int *buffer;
-	int front;
-	int rear;
-	int size;
-	static const int maxQueueLen;
-*/
+
 public:
 	CircularQueue();
 	CircularQueue(int _size);

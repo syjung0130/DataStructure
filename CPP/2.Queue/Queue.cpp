@@ -13,9 +13,9 @@ MyQueue::MyQueue()
 	front = -1;
 	rear = -1;
 	//default queue size :100
-	//size = maxQueueLen;
+	size = maxQueueLen;
 	size = 100;
-	//buffer = (int *)malloc(_size);	
+	buffer = (int *)malloc(_size);	
 	buffer = new int[size];
 	memset(buffer, 0, size);
 #if(0)
@@ -48,7 +48,7 @@ ArrayQueue::ArrayQueue()
 	front = -1;
 	rear = -1;
 	//default queue size :100
-	//size = maxQueueLen;
+	size = maxQueueLen;
 	size = 100;
 	//buffer = (int *)malloc(maxQueueLen);
 	buffer = new int[size];
