@@ -1,6 +1,4 @@
 # DataStructure
-Data Structure
-=================
 
 1.Stack
 --------
