@@ -1,5 +1,6 @@
 #include <iostream>
 
+#if(0)
 class Node
 {
 private:
@@ -8,8 +9,16 @@ private:
 
 public:
 	Node();
+	int setNext(Node *p);
+	Node* getNext();
 };
+#else //using struct Node
+typedef struct Node{
+	char name[100];
+	Node *next;
+}Node;
 
+#endif
 class SimpleLinkedList
 {
 private:
@@ -18,7 +27,8 @@ private:
 public:
 	SimpleLinkedList();
 	~SimpleLinkedList();
-	int add_list(char *_name);
-	int rm_list(char *_name);
+	int insert_item(char *_name);
+	int remove_item(char *_name);
+	int search_list();
 	int search_list(char *_name);
 };
