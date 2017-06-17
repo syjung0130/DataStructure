@@ -10,15 +10,34 @@ enum
 	NO_ERR_LIST = 0,
 	ERROR_MALLOC_FAILED,
 	ERROR_EMPTY_LIST,
+	ERROR_INVALID_INSTANCE,
 };
 
-#if(0)
+#ifndef USING_STRUCT_NODE
 Node::Node()
 {
 	memset(name, 0, sizeof(name));
 	next = NULL;
 }
 #endif
+void Node::setNext(Node *p)
+{
+	next = p;
+}
+Node* Node::getNext()
+{
+	return next;
+}
+
+void Node::setElement(char *_name)
+{
+	memcpy(name, _name, strlen(_name));
+}
+
+char *Node::getElement()
+{
+	return name;
+}
 
 SimpleLinkedList::SimpleLinkedList()
 {
@@ -29,7 +48,7 @@ SimpleLinkedList::~SimpleLinkedList()
 {
 	head = NULL;
 }
-
+#ifdef USING_STRUCT_NODE
 int SimpleLinkedList::insert_item(char *_name)
 {
 	//first insert.
@@ -63,7 +82,44 @@ int SimpleLinkedList::insert_item(char *_name)
 
 	return NO_ERR_LIST;
 }
+#else
+int SimpleLinkedList::insert_item(char *_name)
+{
+	//first insert.
+	if(head == NULL)
+	{
+		//head = (Node *)malloc(sizeof(Node));
+		head = new Node();
+		if(head == NULL)
+		{
+			return ERROR_INVALID_INSTANCE;
+		}
+		Node *newNode = new Node();
+		newNode->setElement(_name);
+		newNode->setNext(NULL);
+	}
+	else//insert current item at rear.
+	{
+		/* Moving position to insert */
+		Node *pCur = head;
+		while(pCur->getNext() != NULL)
+		{
+			pCur = pCur->getNext();
+		}
 
+		/* Insert item at last pos */
+		Node *newNode = new Node();
+		newNode->setElement(_name);
+		pCur->setNext(newNode);
+
+		/* Set last member's next as NULL to identify rear */
+		pCur = pCur->getNext();
+		pCur->setNext(NULL);
+	}
+
+	return NO_ERR_LIST;
+}
+#endif
 int SimpleLinkedList::remove_item(char *_name)
 {
 
@@ -83,9 +139,10 @@ int SimpleLinkedList::search_list(void)
 
 	while(pCur != NULL)
 	{
-		cout<<"["<<iCount<<"]"<<pCur->name<<endl;
+		cout<<"["<<iCount<<"]"<<pCur->getElement()<<endl;
 		iCount++;
-		pCur = pCur->next;
+
+		pCur = pCur->getNext();
 	}
 	return NO_ERR_LIST;
 }
@@ -102,14 +159,14 @@ int SimpleLinkedList::search_list(char *_name)
 
 	while(pCur != NULL)
 	{
-		cout<<"["<<iCount<<"]"<<pCur->name<<endl;
+		cout<<"["<<iCount<<"]"<<pCur->getElement()<<endl;
 		iCount++;
-		if(!strcmp(pCur->name, _name))
+		if(!strcmp(pCur->getElement(), _name))
 		{
-			cout<<"find name : "<<pCur->name<<endl;
+			cout<<"find name : "<<pCur->getElement()<<endl;
 			break;
 		}
-		pCur = pCur->next;
+		pCur = pCur->getNext();
 	}
 	return NO_ERR_LIST;
 }

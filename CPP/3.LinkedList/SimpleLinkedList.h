@@ -1,6 +1,14 @@
 #include <iostream>
 
-#if(0)
+//#define USING_STRUCT_NODE
+
+#ifdef USING_STRUCT_NODE //using struct Node
+typedef struct Node{
+	char name[100];
+	Node *next;
+}Node;
+
+#else
 class Node
 {
 private:
@@ -9,16 +17,13 @@ private:
 
 public:
 	Node();
-	int setNext(Node *p);
+	void setNext(Node *p);
 	Node* getNext();
+	void setElement(char *_name);
+	char *getElement();
 };
-#else //using struct Node
-typedef struct Node{
-	char name[100];
-	Node *next;
-}Node;
-
 #endif
+
 class SimpleLinkedList
 {
 private:
