@@ -11,6 +11,9 @@ enum
 	ERROR_MALLOC_FAILED,
 	ERROR_EMPTY_LIST,
 	ERROR_INVALID_INSTANCE,
+	SUCCESS_FIND_ELEMENT,
+	ERROR_NOT_FIND_ELEMENT,
+	SUCCES_REMOVED_ELEMENT,
 };
 
 #ifndef USING_STRUCT_NODE
@@ -94,7 +97,7 @@ int SimpleLinkedList::insert_item(char *_name)
 		{
 			return ERROR_INVALID_INSTANCE;
 		}
-		Node *newNode = new Node();
+		Node *newNode = head;
 		newNode->setElement(_name);
 		newNode->setNext(NULL);
 	}
@@ -122,8 +125,43 @@ int SimpleLinkedList::insert_item(char *_name)
 #endif
 int SimpleLinkedList::remove_item(char *_name)
 {
-
-	return NO_ERR_LIST;
+	/* Search list to find item to remove */
+	Node *pCur = head;
+	Node *pPrev = head;
+	if(head->getNext() == NULL)
+	{
+		Node *rTemp = head;
+		head = head->getNext();
+		delete rTemp;
+	}
+	else
+	{
+		while(pCur != NULL)
+		{
+			if(!strcmp(pCur->getElement(), _name))
+			{
+				/* remove and return */
+				if(pCur == head)
+				{
+					Node *rTemp = head;
+					head = head->getNext();
+					cout<<"deleted item : "<<rTemp->getElement()<<endl;
+					delete rTemp;
+				}
+				else
+				{
+					Node *rTemp = pCur;
+					pPrev->setNext(pCur->getNext());
+					cout<<"deleted item : "<<pCur->getElement()<<endl;
+					delete rTemp;
+				}
+				return SUCCES_REMOVED_ELEMENT;
+			}
+			pPrev = pCur;
+			pCur = pCur->getNext();
+		}
+	}
+	return ERROR_NOT_FIND_ELEMENT;
 }
 
 int SimpleLinkedList::search_list(void)
@@ -164,9 +202,10 @@ int SimpleLinkedList::search_list(char *_name)
 		if(!strcmp(pCur->getElement(), _name))
 		{
 			cout<<"find name : "<<pCur->getElement()<<endl;
-			break;
+			return SUCCESS_FIND_ELEMENT;
+			//break;
 		}
 		pCur = pCur->getNext();
 	}
-	return NO_ERR_LIST;
+	return ERROR_NOT_FIND_ELEMENT;
 }

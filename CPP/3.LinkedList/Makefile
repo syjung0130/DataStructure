@@ -17,6 +17,6 @@ main : $(OBJECTS)
 	$(CXX) -o main $(OBJECTS)
 clean:
 	rm -rf $(OBJECTS) $(TARGET)
-
+	rm -rf main
 #main.o : main.cpp
 #stack.o : stack.h stack.cpp
