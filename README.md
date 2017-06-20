@@ -74,4 +74,40 @@ int CircularQueue::isFull(void)
 https://github.com/unlocker-sy/DataStructure
 
 
+3.Linked List
+
+- Node 의 선언
+Node는 data를 저장, 조작하기 위한 추상적인 개념. 여기서는 클래스로 정의.
+데이터와 다음 Node를 가리키는 변수, 그리고 이 변수들의 setter, getter함수들을 선언.
+
+
+- head, 첫 Node의 생성.
+head는 첫 번째 Node를 가리키고 있어야함.
+그래서 head값의 초기화는 첫 번째 삽입할 때 함.
+
+
+- node의 삽입. ( 두번째 삽입할 때부터)
+끝에 삽입할 경우를 예로 들면,
+위치를 끝까지 이동,
+새로운 node를 생성
+node의 data를 삽입할 data로 set.
+현재 위치의 node의 next를 새로운 Node로 set.
+새로운 node의 next를 NULL로 set
+
+
+
+- 조회함수
+처음부터 끝까지 조회(출력)하는 함수,
+같은 data를 찾는 함수를 오버로딩해서 두개를 만듬.
+
+
+
+- node의 삭제
+head를 삭제할 경우 head를 next로 이동하고
+그 이후의 node는 그 이전의 node를 기억하고 있어야하고
+삭제할 node를 찾으면 이전 node의 next를 삭제할 node의 next로 set함.
+
+(https://github.com/unlocker-sy/DataStructure/tree/master/CPP/3.LinkedList)
+
+
 
