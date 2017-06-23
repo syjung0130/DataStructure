@@ -51,41 +51,7 @@ SimpleLinkedList::~SimpleLinkedList()
 {
 	head = NULL;
 }
-#ifdef USING_STRUCT_NODE
-int SimpleLinkedList::insert_item(char *_name)
-{
-	//first insert.
-	if(head == NULL)
-	{
-		head = (Node *)malloc(sizeof(Node));
-		if(head == NULL)
-		{
-			return ERROR_MALLOC_FAILED;
-		}
-		memcpy(head->name, _name, strlen(_name));
-		head->next = NULL;
-	}
-	else//insert current item at rear.
-	{
-		/* Searching position to insert */
-		Node *pCur = head;
-		while(pCur->next != NULL)
-		{
-			pCur = pCur->next;
-		}
 
-		/* Insert item at last pos */
-		Node *newNode = (Node *)malloc(sizeof(Node));
-		memcpy(newNode->name, _name, sizeof(_name));
-		pCur->next = newNode;
-
-		pCur = pCur->next;
-		pCur->next = NULL;
-	}
-
-	return NO_ERR_LIST;
-}
-#else
 int SimpleLinkedList::insert_item(char *_name)
 {
 	//first insert.
@@ -122,7 +88,7 @@ int SimpleLinkedList::insert_item(char *_name)
 
 	return NO_ERR_LIST;
 }
-#endif
+
 int SimpleLinkedList::remove_item(char *_name)
 {
 	/* Search list to find item to remove */
