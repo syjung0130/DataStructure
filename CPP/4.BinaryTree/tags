@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CPPFLAGS	Makefile	/^CPPFLAGS = -std=c++11 -lstring$/;"	m
+CXX	Makefile	/^CXX = g++$/;"	m
+OBJECTS	Makefile	/^OBJECTS	=	main.o BinaryTree.o$/;"	m
+SRCS	Makefile	/^SRCS = main.cpp BinaryTree.cpp$/;"	m
+Tree	BinaryTree.cpp	/^Tree::Tree()$/;"	f	class:Tree
+Tree	BinaryTree.cpp	/^Tree::Tree(int data_data, Tree *node_left, Tree *node_right)$/;"	f	class:Tree
+Tree	BinaryTree.h	/^class Tree$/;"	c
+data	BinaryTree.h	/^	int data;$/;"	m	class:Tree
+get_data	BinaryTree.cpp	/^int Tree::get_data()$/;"	f	class:Tree
+get_left	BinaryTree.cpp	/^Tree *Tree::get_left()$/;"	f	class:Tree
+get_right	BinaryTree.cpp	/^Tree *Tree::get_right()$/;"	f	class:Tree
+inorder	BinaryTree.cpp	/^void Tree::inorder(Tree *node)$/;"	f	class:Tree
+left	BinaryTree.h	/^	Tree *left;$/;"	m	class:Tree
+main	main.cpp	/^int main()$/;"	f
+postorder	BinaryTree.cpp	/^void Tree::postorder(Tree *node)$/;"	f	class:Tree
+preorder	BinaryTree.cpp	/^void Tree::preorder(Tree *node)$/;"	f	class:Tree
+right	BinaryTree.h	/^	Tree *right;$/;"	m	class:Tree
+set_left	BinaryTree.cpp	/^void Tree::set_left(Tree *node_left)$/;"	f	class:Tree
+set_right	BinaryTree.cpp	/^void Tree::set_right(Tree *node_right)$/;"	f	class:Tree
+~Tree	BinaryTree.cpp	/^Tree::~Tree()$/;"	f	class:Tree
