@@ -1,0 +1,7 @@
+    {
+      "settings":
+      {
+        "ecc_common_flags": ["-Isrc", "-I/usr/include, -I/Users/sy/2.Github/2.DataStructure/DataStructure/C/Tree"],
+        "easy_clang_complete_verbose": true
+      }
+    }

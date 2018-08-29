@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	
+	"cc_include_options":
+    [
+        "-I//Users/sy/2.Github/2.DataStructure/DataStructure/C/Tree",
+	]
+}
