@@ -1,0 +1,83 @@
+
+[참조]  
+이진 트리: https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%A7%84_%ED%8A%B8%EB%A6%AC  
+트리 구조: https://ko.wikipedia.org/wiki/%ED%8A%B8%EB%A6%AC_%EA%B5%AC%EC%A1%B0  
+  
+### 트리란
+ - 계층적 관계를 표현하는 자료구조이며  
+ - 그래프의 일종으로 여러 노드가 한 노드를 가리킬 수 없는 구조이다.  
+ - 아래와 같은 재귀적 정의도 가능하다.  
+<left><img src="img/400px-Binary_tree.svg.png"/></left>  
+
+>컴퓨터 과학에서, 이진 트리(二進-, 영어: binary tree)는 각각의 노드가 최대 두 개의 자식 노드를  가지는 트리 자료 구조로, 자식 노드를 각각 왼쪽 자식 노드와 오른쪽 자식 노드라고 한다.  
+단순히 집합론의 개념을 사용하는 재귀적 정의에서 (비어있지 않은) 이진 트리는 하나의 튜플(L, S, R)로,  
+L과 R은 이진 트리 또는 공집합이고 S는 싱글턴 집합이다. 일부 구현자는 공집합인 이진 트리도 허용한다.  
+
+
+### 최상위 노드, 부모/자식 노드, 단말노드, 공집합 노드
+ - 최상위 노드는 루트(root)노드라하고, 아래 그림에서 'j'는 'f','k'의 부모노드가 되고 'k'는 'j'의 자식노드가 된다.
+ - 아래로 다른 노드가 연결되어있지 않은 노드를 잎(leaf)노드 또는 단말(terminal)노드라고 부른다.
+ - 자식노드가 연결되어있지 않고 비어있는 경우, 공집합노드가 연결되어있는 것으로 간주한다. 이로 인해 재귀적인 정의 및 순회 시에 재귀의 종료조건이 가능하게 된다.  
+(https://www.geeksforgeeks.org/binary-tree-set-1-introduction/)
+~~~
+      ----
+       j    <-- root
+     /   \
+    f      k  
+  /   \      \
+ a     h      z    <-- leaves 
+~~~  
+
+### 그 외의 필요한 개념 (간선, 레벨, 높이)
+ - 간선은 각 노드를 연결하는 선을 의미하고, 레벨은 현재 노드가 최상위 노드로부터 몇번째 높이에 있는지를 의미, 높이는 최고의 레벨을 높이라고 부른다.
+ - 위 그림에서 높이는 3이 되고, k노드의 레벨은 2가 된다. 간선은 j, k등의 각각의 노드를 잇는 선을 의미한다.
+
+
+### 포화 이진 트리, 완전 이진 트리
+위키피디아에 정의된 내용을 먼저 보자.(https://en.wikipedia.org/wiki/Binary_tree)
+
+포화 이진 트리
+>A full binary tree (sometimes referred to as a proper[15] or plane binary   tree)[16][17] is a tree in which every node has either 0 or 2 children.  
+
+<left><img src="img/800px-Full_binary.svg.png" width="300"/></left>
+  
+
+완전 이진 트리  
+>In a complete binary tree every level, except possibly the last, is completely  
+filled, and all nodes in the last level are as far left as possible.  
+
+<left><img src="img/440px-Complete_binary.svg.png" width="300"></left>
+  
+ - 포화 이진 트리는 모든 노드들의 자식 노드의 갯수가 0이거나 2개인 트리를 의미한다.  
+ - 완전 이진 트리란 왼쪽부터 차례로 채워져 있는 트리를 완전 이진 트리라 한다.  
+ - 완전 이진 트리는 우선순위 큐, 힙 이라는 자료구조에서 사용된다.  
+  
+
+### 순회
+순회 방법으로는 전위/중위/후위 순회가 있다.  
+루트노드를 언제 방문하느냐에 따라 전위/중위/후위 순회로 나뉘어지게 된다.  
+ - 전위 순회: 루트 노드를 처음에 방문  
+ - 중위 순회 : 루트 노드를 중간에 방문  
+ - 후위순회: 루트 노드를 마지막에 방문  
+  
+최상위 노드와 왼쪽/오른쪽 서브트리로 나누어서 재귀적인 방법으로 순회가 가능하다.  
+재귀의 경우 종료 조건이 중요한데 종료조건은 공집합 노드일 경우에 종료하면 된다.  
+
+### Encoding
+이진트리가 아닌 일반 트리를 이진트리로 변환하는 것을 Encoding이라고 하는 것으로 보인다.
+<left><img src="img/500px-N-ary_to_binary.svg.png" width="300"></left>  
+이진트리, 이진탐색트리 먼저 정리한 후에 살펴보도록 하자.. 아래 링크의 succinct encoding, encoding general trees as binary trees절을 참조
+https://en.wikipedia.org/wiki/Binary_tree
+
+### 구현
+이진트리 구현 방법의 아이디어는 간단하다. 
+재귀적인 정의가 가능하듯이 모든 것을 노드로 표현할 수 있다.
+순회는 루트노드, 왼쪽/오른쪽 서브트리로 나누어서 재귀적인 함수의 호출로 순회를 할 수 있다.
+이 때, 루트노드를 언제 방문하느냐에 따라 전위/후위/중위 순회로 분류할 수 있다.  
+https://github.com/unlocker-sy/DataStructure/tree/master/C/Tree  
+https://www.geeksforgeeks.org/binary-tree-set-1-introduction/  
+
+
+연결리스트로 이진트리를 구현할 경우, 이진탐색트리를 구현할 수 있다. 
+배열로 이진트리를 구현할 경우, 이를 이용해서 우선순위를 가지는 배열형태의 이진 트리인 힙이라는 자료구조를 만들 수 있다.
+
