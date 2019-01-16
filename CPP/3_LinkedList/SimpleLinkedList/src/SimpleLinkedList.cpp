@@ -55,7 +55,7 @@ void SimpleLinkedList::InsertNodeAtEnd(int data)
         }
         pCurrentNode->next = pNODE;
     }
-    mLength++;
+    IncreaseLength();
 }
 
 void SimpleLinkedList::RemoveNode(int index)
@@ -63,7 +63,7 @@ void SimpleLinkedList::RemoveNode(int index)
     NODE *pTempNode = m_pHead;
 
     cout << "SimpleLinkedList::RemoveNode()" << endl;
-    mLength--;
+    DecreaseLength();
     if(index > GetLength()-1)
     {
         cout << "Invalid index parameter !!!!" << endl;
@@ -124,4 +124,14 @@ void SimpleLinkedList::PrintList()
 int SimpleLinkedList::GetLength()
 {
     return mLength;
+}
+
+void SimpleLinkedList::IncreaseLength()
+{
+    mLength++;
+}
+
+void SimpleLinkedList::DecreaseLength()
+{
+    mLength--;
 }

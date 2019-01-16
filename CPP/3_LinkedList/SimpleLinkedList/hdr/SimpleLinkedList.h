@@ -19,6 +19,8 @@ public:
     void copyNode(NODE *destNode, NODE *srcNODE);
     void PrintList();
     int GetLength();
+    void IncreaseLength();
+    void DecreaseLength();
 
     // 추후에는 위 메서드들을 private으로 옮기고
     // std::list의 insert(), erase()메서드를 구현해보고 
