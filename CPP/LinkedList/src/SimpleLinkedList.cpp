@@ -4,9 +4,7 @@
 using namespace std;
 
 SimpleLinkedList::SimpleLinkedList()
-:LinkedList(),
- m_pHead(NULL),
- mLength(0)
+:LinkedList()
 {
     cout << "SimpleLinkedList()" << endl;
 }
@@ -97,10 +95,4 @@ void SimpleLinkedList::RemoveNode(int index)
     NODE *pBeRemovedNode = pTempNode->next;
     pTempNode->next = pBeRemovedNode->next;
     free(pBeRemovedNode);
-}
-
-void SimpleLinkedList::copyNode(NODE *destNode, NODE *srcNode)
-{
-    // swallow copy.. if using name member, need to deepcopy
-    memcpy(destNode, srcNode, sizeof(NODE));
 }

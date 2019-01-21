@@ -45,5 +45,10 @@ void LinkedList::DecreaseLength()
     mLength--;
 }
 
+void LinkedList::copyNode(NODE *destNode, NODE *srcNode)
+{
+    memcpy(destNode, srcNode, sizeof(NODE));
+}
+
 }
 }

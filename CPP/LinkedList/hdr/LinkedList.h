@@ -4,22 +4,12 @@
 namespace sy {
 namespace list {
 
-//temporary.. Node structure
-typedef struct DATA 
+typedef struct NODE 
 {
     int data;
-}DATA;
-
-typedef struct NODE : DATA
-{
     NODE *next;
+    NODE *prev;
 }NODE;
-
-typedef struct DLIST_NODE : DATA
-{
-    DLIST_NODE *next;
-    DLIST_NODE *prev;
-}DLIST_NODE;
 
 class LinkedList 
 {
@@ -29,7 +19,7 @@ public:
     virtual void *CreateNode() = 0;
     virtual void InsertNodeAtEnd(int data) = 0;
     virtual void RemoveNode(int index) = 0;
-    // virtual void copyNode(NODE *destNode, NODE *srcNODE) = 0;
+    void copyNode(NODE *destNode, NODE *srcNODE);
     void PrintList();
     int GetLength();
     void IncreaseLength();
@@ -39,8 +29,9 @@ public:
     // std::list의 insert(), erase()메서드를 구현해보고 
     //[]연산자 오버로딩까지 해보자
 private:
-    NODE *m_pHead;
     int mLength;
+protected:
+    NODE *m_pHead;
 };
 
 }//list
