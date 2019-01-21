@@ -4,7 +4,8 @@
 using namespace std;
 
 SimpleLinkedList::SimpleLinkedList()
-:m_pHead(NULL),
+:LinkedList(),
+ m_pHead(NULL),
  mLength(0)
 {
     cout << "SimpleLinkedList()" << endl;
@@ -13,7 +14,8 @@ SimpleLinkedList::SimpleLinkedList()
 SimpleLinkedList::~SimpleLinkedList()
 {
     cout << "~SimpleLinkedList()" << endl;
-    if (GetLength() == 0) {
+    if (GetLength() == 0) 
+    {
         return;
     }
     while (m_pHead->next != NULL)
@@ -25,19 +27,19 @@ SimpleLinkedList::~SimpleLinkedList()
     }
 }
 
-NODE* SimpleLinkedList::CreateNode()
+void* SimpleLinkedList::CreateNode()
 {
     cout << "SimpleLinkedList::CreateNode()" << endl;
     NODE *pNODE = (NODE *)malloc(sizeof(NODE));
     pNODE->next = NULL;
     pNODE->data = 0;
     
-    return pNODE;
+    return (void *)pNODE;
 }
 
 void SimpleLinkedList::InsertNodeAtEnd(int data)
 {
-    NODE *pNODE = CreateNode();
+    NODE *pNODE = (NODE *)CreateNode();
     pNODE->data = data;
 
     cout << "SimpleLinkedList::InsertNodeAtEnd()" << endl;
@@ -101,37 +103,4 @@ void SimpleLinkedList::copyNode(NODE *destNode, NODE *srcNode)
 {
     // swallow copy.. if using name member, need to deepcopy
     memcpy(destNode, srcNode, sizeof(NODE));
-}
-
-void SimpleLinkedList::PrintList()
-{
-    NODE *pNODE = m_pHead;
-    cout << "SimpleLinkedList::PrintList()" << endl;
-    if(pNODE == NULL)
-    {
-        cout << "List element is not exist !!!!!" <<endl;
-        return;
-    }
-    cout << "#### List Items ####" << endl;
-    while(pNODE != NULL)
-    {
-        cout << pNODE->data << endl;
-        pNODE = pNODE->next;
-    }
-    cout << "####################" << endl;
-}
-
-int SimpleLinkedList::GetLength()
-{
-    return mLength;
-}
-
-void SimpleLinkedList::IncreaseLength()
-{
-    mLength++;
-}
-
-void SimpleLinkedList::DecreaseLength()
-{
-    mLength--;
 }

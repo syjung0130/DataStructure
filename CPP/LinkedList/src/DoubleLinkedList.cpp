@@ -4,7 +4,8 @@
 using namespace std;
 
 DoubleLinkedList::DoubleLinkedList()
-:m_pHead(NULL),
+: LinkedList(),
+ m_pHead(NULL),
  mLength(0)
 {
     cout << "DoubleLinkedList()" << endl;
@@ -13,7 +14,8 @@ DoubleLinkedList::DoubleLinkedList()
 DoubleLinkedList::~DoubleLinkedList()
 {
     cout << "~DoubleLinkedList()" << endl;
-    if (GetLength() == 0) {
+    if (GetLength() == 0) 
+    {
         return;
     }
     while (m_pHead->next != NULL)
@@ -25,7 +27,7 @@ DoubleLinkedList::~DoubleLinkedList()
     }
 }
 
-DLIST_NODE* DoubleLinkedList::CreateNode()
+void *DoubleLinkedList::CreateNode()
 {
     cout << "DoubleLinkedList::CreateNode()" << endl;
     DLIST_NODE *pNODE = (DLIST_NODE *)malloc(sizeof(DLIST_NODE));
@@ -33,12 +35,12 @@ DLIST_NODE* DoubleLinkedList::CreateNode()
     pNODE->prev = NULL;
     pNODE->data = 0;
     
-    return pNODE;
+    return (void *)pNODE;
 }
 
 void DoubleLinkedList::InsertNodeAtEnd(int data)
 {
-    DLIST_NODE *pNODE = CreateNode();
+    DLIST_NODE *pNODE = (DLIST_NODE *)CreateNode();
     pNODE->data = data;
 
     cout << "DoubleLinkedList::InsertNodeAtEnd()" << endl;
@@ -106,37 +108,4 @@ void DoubleLinkedList::copyNode(DLIST_NODE *destNode, DLIST_NODE *srcNode)
 {
     // swallow copy.. if using name member, need to deepcopy
     memcpy(destNode, srcNode, sizeof(DLIST_NODE));
-}
-
-void DoubleLinkedList::PrintList()
-{
-    DLIST_NODE *pNODE = m_pHead;
-    cout << "DoubleLinkedList::PrintList()" << endl;
-    if(pNODE == NULL)
-    {
-        cout << "List element is not exist !!!!!" <<endl;
-        return;
-    }
-    cout << "#### List Items ####" << endl;
-    while(pNODE != NULL)
-    {
-        cout << pNODE->data << endl;
-        pNODE = pNODE->next;
-    }
-    cout << "####################" << endl;
-}
-
-int DoubleLinkedList::GetLength()
-{
-    return mLength;
-}
-
-void DoubleLinkedList::IncreaseLength()
-{
-    mLength++;
-}
-
-void DoubleLinkedList::DecreaseLength()
-{
-    mLength--;
 }

@@ -1,23 +1,18 @@
 #ifndef __SIMPLELINKEDLIST_H__
 #define __SIMPLELINKEDLIST_H__
 
-typedef struct NODE {
-    int data;
-    NODE *next;
-}NODE;
+#include "LinkedList.h"
+using namespace sy::list;
 
-class SimpleLinkedList {
+class SimpleLinkedList : public LinkedList
+{
 public:
     SimpleLinkedList();
     ~SimpleLinkedList();
-    NODE *CreateNode();
+    void *CreateNode();
     void InsertNodeAtEnd(int data);
     void RemoveNode(int index);
     void copyNode(NODE *destNode, NODE *srcNODE);
-    void PrintList();
-    int GetLength();
-    void IncreaseLength();
-    void DecreaseLength();
 
     // 추후에는 위 메서드들을 private으로 옮기고
     // std::list의 insert(), erase()메서드를 구현해보고 
