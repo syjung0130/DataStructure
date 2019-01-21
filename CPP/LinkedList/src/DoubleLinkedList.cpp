@@ -12,17 +12,7 @@ DoubleLinkedList::DoubleLinkedList()
 DoubleLinkedList::~DoubleLinkedList()
 {
     cout << "~DoubleLinkedList()" << endl;
-    if (GetLength() == 0) 
-    {
-        return;
-    }
-    while (m_pHead->next != NULL)
-    {
-        printf("~DoubleLinkedList: free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
-        NODE *tempNode = m_pHead;
-        m_pHead = m_pHead->next;
-        free(tempNode);
-    }
+    RemoveAllNodes();
 }
 
 void DoubleLinkedList::InsertNodeAtEnd(int data)

@@ -12,17 +12,7 @@ SimpleLinkedList::SimpleLinkedList()
 SimpleLinkedList::~SimpleLinkedList()
 {
     cout << "~SimpleLinkedList()" << endl;
-    if (GetLength() == 0) 
-    {
-        return;
-    }
-    while (m_pHead->next != NULL)
-    {
-        printf("~SimpleLinkedList: free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
-        NODE *tempNode = m_pHead;
-        m_pHead = m_pHead->next;
-        free(tempNode);
-    }
+    RemoveAllNodes();
 }
 
 void SimpleLinkedList::InsertNodeAtEnd(int data)

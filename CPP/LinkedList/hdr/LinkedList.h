@@ -17,6 +17,7 @@ public:
     LinkedList();
     virtual ~LinkedList(){}
     NODE *CreateNode();
+    void RemoveAllNodes();
     virtual void InsertNodeAtEnd(int data) = 0;
     virtual void RemoveNode(int index) = 0;
     void copyNode(NODE *destNode, NODE *srcNODE);

@@ -22,6 +22,22 @@ NODE *LinkedList::CreateNode()
     return pNODE;
 }
 
+void LinkedList::RemoveAllNodes()
+{
+    cout << "RemoveAllNodes()" << endl;
+    if (GetLength() == 0) 
+    {
+        return;
+    }
+    while (m_pHead->next != NULL)
+    {
+        printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
+        NODE *tempNode = m_pHead;
+        m_pHead = m_pHead->next;
+        free(tempNode);
+    }
+}
+
 void LinkedList::PrintList()
 {
     NODE *pNODE = m_pHead;
