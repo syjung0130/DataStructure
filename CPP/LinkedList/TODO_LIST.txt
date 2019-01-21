@@ -1,4 +1,3 @@
-소멸자에서 마지막 원소 해제 안되는 문제 수정 필요
 capacity, size 추가 필요
 stl의 인터페이스도 익숙해질 겸, .. push_back등의 메서드들 구현
 List 의 원소를 template타입으로 변경

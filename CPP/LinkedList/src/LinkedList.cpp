@@ -36,6 +36,8 @@ void LinkedList::RemoveAllNodes()
         m_pHead = m_pHead->next;
         free(tempNode);
     }
+    printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
+    free(m_pHead);
 }
 
 void LinkedList::PrintList()
