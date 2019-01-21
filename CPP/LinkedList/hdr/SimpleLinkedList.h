@@ -1,11 +1,8 @@
 #ifndef __SIMPLELINKEDLIST_H__
 #define __SIMPLELINKEDLIST_H__
 
-// const unsigned int NAME_LENGTH = 20;
-
 typedef struct NODE {
     int data;
-    // char name[NAME_LENGTH];
     NODE *next;
 }NODE;
 
