@@ -22,14 +22,14 @@ void SimpleLinkedList::InsertNodeAtEnd(int data)
 
     cout << "SimpleLinkedList::InsertNodeAtEnd()" << endl;
 
-    if(m_pHead == NULL) //if only one node existed
+    if(m_pHead == nullptr) //if only one node existed
     {
         m_pHead = pNODE;
     }
     else // if two or more than nodes are existed
     {
         NODE *pCurrentNode = m_pHead;
-        while(pCurrentNode->next != NULL)
+        while(pCurrentNode->next != nullptr)
         {
             pCurrentNode = pCurrentNode->next;
         }
@@ -54,7 +54,7 @@ void SimpleLinkedList::RemoveNode(int index)
     if(GetLength() == 1)
     {
         free(m_pHead);
-        m_pHead = NULL;
+        m_pHead = nullptr;
         return;
     }
 

@@ -16,7 +16,7 @@ NODE *LinkedList::CreateNode()
 {
     cout << "SimpleLinkedList::CreateNode()" << endl;
     NODE *pNODE = (NODE *)malloc(sizeof(NODE));
-    pNODE->next = NULL;
+    pNODE->next = nullptr;
     pNODE->data = 0;
     
     return pNODE;
@@ -29,7 +29,7 @@ void LinkedList::RemoveAllNodes()
     {
         return;
     }
-    while (m_pHead->next != NULL)
+    while (m_pHead->next != nullptr)
     {
         printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
         NODE *tempNode = m_pHead;
@@ -42,13 +42,13 @@ void LinkedList::PrintList()
 {
     NODE *pNODE = m_pHead;
     cout << "SimpleLinkedList::PrintList()" << endl;
-    if(pNODE == NULL)
+    if(pNODE == nullptr)
     {
         cout << "List element is not exist !!!!!" <<endl;
         return;
     }
     cout << "#### List Items ####" << endl;
-    while(pNODE != NULL)
+    while(pNODE != nullptr)
     {
         cout << pNODE->data << endl;
         pNODE = pNODE->next;

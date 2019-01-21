@@ -22,14 +22,14 @@ void DoubleLinkedList::InsertNodeAtEnd(int data)
 
     cout << "DoubleLinkedList::InsertNodeAtEnd()" << endl;
 
-    if(m_pHead == NULL) //if only one node existed
+    if(m_pHead == nullptr) //if only one node existed
     {
         m_pHead = pNODE;
     }
     else // if two or more than nodes are existed
     {
         NODE *pCurrentNode = m_pHead;
-        while(pCurrentNode->next != NULL)
+        while(pCurrentNode->next != nullptr)
         {
             pCurrentNode = pCurrentNode->next;
         }
@@ -55,7 +55,7 @@ void DoubleLinkedList::RemoveNode(int index)
     if(GetLength() == 1)
     {
         free(m_pHead);
-        m_pHead = NULL;
+        m_pHead = nullptr;
         return;
     }
 
@@ -64,7 +64,7 @@ void DoubleLinkedList::RemoveNode(int index)
     {
         NODE *pBeRemovedNode = m_pHead;
         m_pHead = pBeRemovedNode->next;
-        m_pHead->prev = NULL;        
+        m_pHead->prev = nullptr;        
         free(pBeRemovedNode);
         return;
     }
