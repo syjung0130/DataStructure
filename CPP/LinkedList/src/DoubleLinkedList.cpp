@@ -19,16 +19,16 @@ DoubleLinkedList::~DoubleLinkedList()
     while (m_pHead->next != NULL)
     {
         printf("~DoubleLinkedList: free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
-        NODE *tempNode = m_pHead;
+        DLIST_NODE *tempNode = m_pHead;
         m_pHead = m_pHead->next;
         free(tempNode);
     }
 }
 
-NODE* DoubleLinkedList::CreateNode()
+DLIST_NODE* DoubleLinkedList::CreateNode()
 {
     cout << "DoubleLinkedList::CreateNode()" << endl;
-    NODE *pNODE = (NODE *)malloc(sizeof(NODE));
+    DLIST_NODE *pNODE = (DLIST_NODE *)malloc(sizeof(DLIST_NODE));
     pNODE->next = NULL;
     pNODE->prev = NULL;
     pNODE->data = 0;
@@ -38,7 +38,7 @@ NODE* DoubleLinkedList::CreateNode()
 
 void DoubleLinkedList::InsertNodeAtEnd(int data)
 {
-    NODE *pNODE = CreateNode();
+    DLIST_NODE *pNODE = CreateNode();
     pNODE->data = data;
 
     cout << "DoubleLinkedList::InsertNodeAtEnd()" << endl;
@@ -49,7 +49,7 @@ void DoubleLinkedList::InsertNodeAtEnd(int data)
     }
     else // if two or more than nodes are existed
     {
-        NODE *pCurrentNode = m_pHead;
+        DLIST_NODE *pCurrentNode = m_pHead;
         while(pCurrentNode->next != NULL)
         {
             pCurrentNode = pCurrentNode->next;
@@ -62,7 +62,7 @@ void DoubleLinkedList::InsertNodeAtEnd(int data)
 
 void DoubleLinkedList::RemoveNode(int index)
 {
-    NODE *pTempNode = m_pHead;
+    DLIST_NODE *pTempNode = m_pHead;
 
     cout << "DoubleLinkedList::RemoveNode()" << endl;
     DecreaseLength();
@@ -83,7 +83,7 @@ void DoubleLinkedList::RemoveNode(int index)
     // 첫번째 노드를 삭제할 경우
     if(index == 0)
     {
-        NODE *pBeRemovedNode = m_pHead;
+        DLIST_NODE *pBeRemovedNode = m_pHead;
         m_pHead = pBeRemovedNode->next;
         m_pHead->prev = NULL;        
         free(pBeRemovedNode);
@@ -96,21 +96,21 @@ void DoubleLinkedList::RemoveNode(int index)
         pTempNode = pTempNode->next;
     }
     // 노드 삭제
-    NODE *pBeRemovedNode = pTempNode->next;
+    DLIST_NODE *pBeRemovedNode = pTempNode->next;
     pTempNode->next = pBeRemovedNode->next;
     pBeRemovedNode->next->prev = pTempNode;
     free(pBeRemovedNode);
 }
 
-void DoubleLinkedList::copyNode(NODE *destNode, NODE *srcNode)
+void DoubleLinkedList::copyNode(DLIST_NODE *destNode, DLIST_NODE *srcNode)
 {
     // swallow copy.. if using name member, need to deepcopy
-    memcpy(destNode, srcNode, sizeof(NODE));
+    memcpy(destNode, srcNode, sizeof(DLIST_NODE));
 }
 
 void DoubleLinkedList::PrintList()
 {
-    NODE *pNODE = m_pHead;
+    DLIST_NODE *pNODE = m_pHead;
     cout << "DoubleLinkedList::PrintList()" << endl;
     if(pNODE == NULL)
     {

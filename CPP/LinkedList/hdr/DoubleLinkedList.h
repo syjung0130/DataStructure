@@ -1,20 +1,20 @@
 #ifndef __DOUBLELINKEDLIST_H__
 #define __DOUBLELINKEDLIST_H__
 
-typedef struct NODE {
+typedef struct DLIST_NODE {
     int data;
-    NODE *next;
-    NODE *prev;
-}NODE;
+    DLIST_NODE *next;
+    DLIST_NODE *prev;
+}DLIST_NODE;
 
 class DoubleLinkedList {
 public:
     DoubleLinkedList();
     ~DoubleLinkedList();
-    NODE *CreateNode();
+    DLIST_NODE *CreateNode();
     void InsertNodeAtEnd(int data);
     void RemoveNode(int index);
-    void copyNode(NODE *destNode, NODE *srcNODE);
+    void copyNode(DLIST_NODE *destNode, DLIST_NODE *srcNODE);
     void PrintList();
     int GetLength();
     void IncreaseLength();
@@ -24,7 +24,7 @@ public:
     // std::list의 insert(), erase()메서드를 구현해보고 
     //[]연산자 오버로딩까지 해보자
 private:
-    NODE *m_pHead;
+    DLIST_NODE *m_pHead;
     int mLength;
 };
 
