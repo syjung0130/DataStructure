@@ -9,7 +9,6 @@ class SimpleLinkedList : public LinkedList
 public:
     SimpleLinkedList();
     ~SimpleLinkedList();
-    void *CreateNode();
     void InsertNodeAtEnd(int data);
     void RemoveNode(int index);
 

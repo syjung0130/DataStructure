@@ -16,7 +16,7 @@ class LinkedList
 public:
     LinkedList();
     virtual ~LinkedList(){}
-    virtual void *CreateNode() = 0;
+    NODE *CreateNode();
     virtual void InsertNodeAtEnd(int data) = 0;
     virtual void RemoveNode(int index) = 0;
     void copyNode(NODE *destNode, NODE *srcNODE);

@@ -25,16 +25,6 @@ SimpleLinkedList::~SimpleLinkedList()
     }
 }
 
-void* SimpleLinkedList::CreateNode()
-{
-    cout << "SimpleLinkedList::CreateNode()" << endl;
-    NODE *pNODE = (NODE *)malloc(sizeof(NODE));
-    pNODE->next = NULL;
-    pNODE->data = 0;
-    
-    return (void *)pNODE;
-}
-
 void SimpleLinkedList::InsertNodeAtEnd(int data)
 {
     NODE *pNODE = (NODE *)CreateNode();

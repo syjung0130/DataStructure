@@ -12,6 +12,16 @@ mLength(0)
 {
 }
 
+NODE *LinkedList::CreateNode()
+{
+    cout << "SimpleLinkedList::CreateNode()" << endl;
+    NODE *pNODE = (NODE *)malloc(sizeof(NODE));
+    pNODE->next = NULL;
+    pNODE->data = 0;
+    
+    return pNODE;
+}
+
 void LinkedList::PrintList()
 {
     NODE *pNODE = m_pHead;

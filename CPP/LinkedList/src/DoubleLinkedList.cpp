@@ -25,17 +25,6 @@ DoubleLinkedList::~DoubleLinkedList()
     }
 }
 
-void *DoubleLinkedList::CreateNode()
-{
-    cout << "DoubleLinkedList::CreateNode()" << endl;
-    NODE *pNODE = (NODE *)malloc(sizeof(NODE));
-    pNODE->next = NULL;
-    pNODE->prev = NULL;
-    pNODE->data = 0;
-    
-    return (void *)pNODE;
-}
-
 void DoubleLinkedList::InsertNodeAtEnd(int data)
 {
     NODE *pNODE = (NODE *)CreateNode();

@@ -9,7 +9,6 @@ class DoubleLinkedList : public LinkedList
 public:
     DoubleLinkedList();
     ~DoubleLinkedList();
-    void *CreateNode();
     void InsertNodeAtEnd(int data);
     void RemoveNode(int index);
 
