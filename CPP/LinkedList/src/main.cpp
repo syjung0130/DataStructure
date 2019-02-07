@@ -1,6 +1,7 @@
 #include <iostream>
 #include "SimpleLinkedList.h"
 #include "DoubleLinkedList.h"
+#include "TLinkedList.h"
 
 using namespace std;
 
@@ -103,6 +104,16 @@ void TestMoreThanOneItem(TestListType listType)
     cout << "@@@@ TestMoreThanOneItem END !!!! @@@@" << endl;
 }
 
+void TestTemplateList()
+{
+    TLinkedList<int> iList;
+    iList.CreateNode();
+    iList.CreateNode();
+
+    TLinkedList<double> dList;
+    dList.CreateNode();
+}
+
 int main ()
 {
     cout << "Simple Linked List test main()" << endl;
@@ -112,5 +123,7 @@ int main ()
 
     TestOneItem(TestListType::DoubleList);
     TestMoreThanOneItem(TestListType::DoubleList);
+
+    TestTemplateList();
     return 0;
 }
