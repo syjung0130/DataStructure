@@ -51,5 +51,12 @@ int main ()
     cout << std::fixed << "int sum() result: " << iResult << endl
         << "double sum() result: " << dResult << endl;
 
+    cout << "==== Check Template Node, List ====" << endl;
+    MyList<int> iList;
+    iList.createNode();
+    iList.createNode();
+    MyList<double> dList;
+    dList.createNode();
+
   return 0;
 }
