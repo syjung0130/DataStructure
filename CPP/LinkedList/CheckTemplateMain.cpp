@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include "CheckTemplateClass.h"
+
 using namespace std;
 
 // function template
@@ -14,7 +16,7 @@ template <typename T>
 T GetMul (T a, T b)
 {
     T result;
-    result = a/b;
+    result = a * b;
     return result;
 }
 
@@ -40,6 +42,14 @@ int main ()
     cout.precision(5);
     cout << std::fixed << "int multiply result: " << iResult << endl
             << "double multiply result: " << dResult << endl;
+
+    cout << "==== Check Template Class : Sum function ====" << endl;
+    MyMath<int> iMath;
+    iResult = iMath.sum(iOp1, iOp2);
+    MyMath<double> dMath;
+    dResult = dMath.sum(dOp1, dOp2);
+    cout << std::fixed << "int sum() result: " << iResult << endl
+        << "double sum() result: " << dResult << endl;
 
   return 0;
 }
