@@ -1,4 +1,4 @@
-project(ysw_cpp_example)
+project(linked_list)
 
 cmake_minimum_required(VERSION 3.0)
 
