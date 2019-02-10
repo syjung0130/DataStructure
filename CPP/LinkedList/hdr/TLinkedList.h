@@ -66,7 +66,22 @@ TNODE<T> *TLinkedList<T>::CreateNode()
 template<typename T>
 void TLinkedList<T>::RemoveAllNodes()
 {
-
+    cout << "RemoveAllNodes()" << endl;
+    if (GetLength() == 0) 
+    {
+        return;
+    }
+    while (m_pHead->next != nullptr)
+    {
+        printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
+        TNODE<T> *tempNode = m_pHead;
+        m_pHead = m_pHead->next;
+        delete tempNode;
+        DecreaseLength();
+    }
+    printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
+    delete m_pHead;
+    DecreaseLength();
 }
 
 template<typename T>
@@ -97,7 +112,43 @@ void TLinkedList<T>::InsertNodeAtEnd(T data)
 template<typename T>
 void TLinkedList<T>::RemoveNode(int index)
 {
+    TNODE<T> *pTempNode = m_pHead;
 
+    cout << "TLinkedList::RemoveNode()" << endl;
+    
+    if(index > GetLength()-1)
+    {
+        cout << "Invalid index parameter !!!!" << endl;
+        return;
+    }
+
+    // 삭제할 노드가 하나 뿐일 경우
+    if(GetLength() == 1)
+    {
+        delete m_pHead;
+        m_pHead = nullptr;
+        DecreaseLength();
+        return;
+    }
+    DecreaseLength();
+
+    // 첫번째 노드를 삭제할 경우
+    if(index == 0)
+    {
+        TNODE<T> *pBeRemovedNode = m_pHead;
+        m_pHead = pBeRemovedNode->next;        
+        delete pBeRemovedNode;
+        return;
+    }
+
+    // 삭제할 인덱스 바로 전 노드까지 이동
+    for(int i = 0; i < index-1; i++)
+    {
+        pTempNode = pTempNode->next;
+    }
+    TNODE<T> *pBeRemovedNode = pTempNode->next;
+    pTempNode->next = pBeRemovedNode->next;
+    delete pBeRemovedNode;
 }
 
 template<typename T>
@@ -112,7 +163,7 @@ void TLinkedList<T>::PrintList()
     cout.precision(5);
     TNODE<T> *pNODE = m_pHead;
     cout << "TLinkedList::PrintList()" << endl;
-    if(pNODE == nullptr)
+    if(pNODE == nullptr || GetLength() == 0)
     {
         cout << "List element is not exist !!!!!" <<endl;
         return;
