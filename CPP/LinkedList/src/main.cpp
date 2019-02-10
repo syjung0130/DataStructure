@@ -106,12 +106,17 @@ void TestMoreThanOneItem(TestListType listType)
 
 void TestTemplateList()
 {
+    cout << "----- TestTemplateList() ------" << endl;
+    cout.precision(5);
     TLinkedList<int> iList;
-    iList.CreateNode();
-    iList.CreateNode();
+    iList.InsertNodeAtEnd(5);
+    iList.InsertNodeAtEnd(9);
+    iList.PrintList();
 
     TLinkedList<double> dList;
-    dList.CreateNode();
+    dList.InsertNodeAtEnd(5.00);
+    dList.InsertNodeAtEnd(9.00);
+    dList.PrintList();
 }
 
 int main ()

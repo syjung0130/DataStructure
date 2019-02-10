@@ -72,7 +72,25 @@ void TLinkedList<T>::RemoveAllNodes()
 template<typename T>
 void TLinkedList<T>::InsertNodeAtEnd(T data)
 {
+    TNODE<T> *pNODE = CreateNode();
+    pNODE->data = data;
 
+    cout << "TLinkedList::InsertNodeAtEnd()" << endl;
+
+    if(m_pHead == nullptr) //if only one node existed
+    {
+        m_pHead = pNODE;
+    }
+    else // if two or more than nodes are existed
+    {
+        TNODE<T> *pCurrentNode = m_pHead;
+        while(pCurrentNode->next != nullptr)
+        {
+            pCurrentNode = pCurrentNode->next;
+        }
+        pCurrentNode->next = pNODE;
+    }
+    IncreaseLength();
 }
 
 
@@ -91,7 +109,21 @@ void TLinkedList<T>::copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE)
 template<typename T>
 void TLinkedList<T>::PrintList()
 {
-
+    cout.precision(5);
+    TNODE<T> *pNODE = m_pHead;
+    cout << "TLinkedList::PrintList()" << endl;
+    if(pNODE == nullptr)
+    {
+        cout << "List element is not exist !!!!!" <<endl;
+        return;
+    }
+    cout << "#### List Items ####" << endl;
+    while(pNODE != nullptr)
+    {
+        cout << fixed << pNODE->data << endl;
+        pNODE = pNODE->next;
+    }
+    cout << "####################" << endl;
 }
 
 template<typename T>
