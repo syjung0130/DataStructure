@@ -46,11 +46,14 @@ TLinkedList<T>::TLinkedList()
  :mLength(0),
  m_pHead(nullptr)
 {
+    cout << "TLinkedList()" << endl;
 }
 
 template<typename T>
 TLinkedList<T>::~TLinkedList()
 {
+    cout << "~TLinkedList()" << endl;
+    RemoveAllNodes();
 }
 
 template<typename T>
