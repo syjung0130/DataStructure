@@ -126,6 +126,17 @@ void TestTemplateList()
     dList.PrintList();
     dList.RemoveAllNodes();
     dList.PrintList();
+
+
+    cout << "TestTemplateList: string items list" << endl;
+    TLinkedList<string> sList;
+    sList.InsertNodeAtEnd("aaaa");
+    sList.InsertNodeAtEnd("hhhh");
+    sList.PrintList();
+    sList.RemoveNode(0);
+    sList.PrintList();
+    sList.RemoveAllNodes();
+    sList.PrintList();
 }
 
 int main ()
