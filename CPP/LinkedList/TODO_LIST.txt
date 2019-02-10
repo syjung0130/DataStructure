@@ -1,4 +1,0 @@
-capacity, size 추가 필요
-stl의 인터페이스도 익숙해질 겸, .. push_back등의 메서드들 구현
-List 의 원소를 template타입으로 변경
-Iterator구현(current pointer or reference?)
