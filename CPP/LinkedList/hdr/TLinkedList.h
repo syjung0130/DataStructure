@@ -22,6 +22,11 @@ class TLinkedList
 public:
     TLinkedList();
     virtual ~TLinkedList();
+    
+    //Capacity
+    bool empty();
+    int size();
+
     TNODE<T> *CreateNode();
     virtual void RemoveAllNodes();
     virtual void InsertNodeAtEnd(T data);
@@ -54,6 +59,25 @@ TLinkedList<T>::~TLinkedList()
 {
     cout << "~TLinkedList()" << endl;
     RemoveAllNodes();
+}
+
+template<typename T>
+bool TLinkedList<T>::empty()
+{
+    if(GetLength() > 0) 
+    {
+        return false;
+    }
+    else 
+    {
+        return true;
+    }
+}
+
+template<typename T>
+int TLinkedList<T>::size()
+{
+    return GetLength();
 }
 
 template<typename T>
