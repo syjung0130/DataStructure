@@ -27,9 +27,22 @@ public:
     bool empty();
     int size();
 
+    //Modifiers
+    void clear();
+    //TODO: 아래 메소드들은 Iterator 구현 후에
+    // void insert();//TODO: iterator 구현 후에
+    // iterator emplace( const_iterator pos, Args&&... args ); //TODO: iterator 구현 후에
+    // iterator erase( iterator pos ); (until C++11)
+    // iterator erase( const_iterator pos );(since C++11)
+    // iterator erase( iterator first, iterator last );(until C++11)
+    // iterator erase( const_iterator first, const_iterator last );(since C++11)
+
+    void push_back( const T& value );
+
+
     TNODE<T> *CreateNode();
     virtual void RemoveAllNodes();
-    virtual void InsertNodeAtEnd(T data);
+    virtual void InsertNodeAtEnd(const T& data);
     virtual void RemoveNode(int index);
     void copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE);
     void PrintList();
@@ -81,6 +94,18 @@ int TLinkedList<T>::size()
 }
 
 template<typename T>
+void TLinkedList<T>::clear()
+{
+    RemoveAllNodes();
+}
+
+template<typename T>
+void TLinkedList<T>::push_back(const T& value)
+{
+    InsertNodeAtEnd(value);
+}
+
+template<typename T>
 TNODE<T> *TLinkedList<T>::CreateNode()
 {
     cout << "TLinkedList::CreateNode()" << endl;
@@ -112,7 +137,7 @@ void TLinkedList<T>::RemoveAllNodes()
 }
 
 template<typename T>
-void TLinkedList<T>::InsertNodeAtEnd(T data)
+void TLinkedList<T>::InsertNodeAtEnd(const T& data)
 {
     TNODE<T> *pNODE = CreateNode();
     pNODE->data = data;

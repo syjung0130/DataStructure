@@ -110,9 +110,8 @@ void TestTemplateList()
     cout << "TestTemplateList: int items list" << endl;
     TLinkedList<int> iList;
     cout << "iList is empty: " << iList.empty() <<endl;
-    iList.InsertNodeAtEnd(5);
-    iList.InsertNodeAtEnd(9);
-    iList.PrintList();
+    iList.push_back(5);
+    iList.push_back(9);
     cout << "iList is empty: " << iList.empty() <<endl;
     iList.RemoveNode(0);
     iList.PrintList();
@@ -123,8 +122,8 @@ void TestTemplateList()
     cout << "TestTemplateList: double items list" << endl;
     TLinkedList<double> dList;
     cout << "dList is empty: " << dList.empty() <<endl;
-    dList.InsertNodeAtEnd(5.00);
-    dList.InsertNodeAtEnd(9.00);
+    dList.push_back(5.00);
+    dList.push_back(9.00);
     dList.PrintList();
     cout << "dList is empty: " << dList.empty() <<endl;
     dList.RemoveNode(0);
@@ -137,8 +136,8 @@ void TestTemplateList()
     cout << "TestTemplateList: string items list" << endl;
     TLinkedList<string> sList;
     cout << "sList is empty: " << sList.empty() <<endl;
-    sList.InsertNodeAtEnd("aaaa");
-    sList.InsertNodeAtEnd("hhhh");
+    sList.push_back("aaaa");
+    sList.push_back("hhhh");
     sList.PrintList();
     cout << "sList is empty: " << sList.empty() <<endl;
     sList.RemoveNode(0);
