@@ -113,9 +113,9 @@ void TestTemplateList()
     iList.push_back(5);
     iList.push_back(9);
     cout << "iList is empty: " << iList.empty() <<endl;
-    iList.RemoveNode(0);
+    iList.pop_front();
     iList.PrintList();
-    iList.RemoveAllNodes();
+    iList.pop_back();
     iList.PrintList();
     cout << "iList is empty: " << iList.empty() <<endl;
 
@@ -126,9 +126,9 @@ void TestTemplateList()
     dList.push_back(9.00);
     dList.PrintList();
     cout << "dList is empty: " << dList.empty() <<endl;
-    dList.RemoveNode(0);
+    dList.pop_front();
     dList.PrintList();
-    dList.RemoveAllNodes();
+    dList.pop_back();
     dList.PrintList();
     cout << "dList is empty: " << dList.empty() <<endl;
 
@@ -140,9 +140,11 @@ void TestTemplateList()
     sList.push_back("hhhh");
     sList.PrintList();
     cout << "sList is empty: " << sList.empty() <<endl;
-    sList.RemoveNode(0);
-    sList.PrintList();
-    sList.RemoveAllNodes();
+    sList.resize(1);
+    sList.pop_back();
+    // sList.pop_front();
+    // sList.PrintList();
+    // sList.pop_back();
     sList.PrintList();
     cout << "sList is empty: " << sList.empty() <<endl;
 }

@@ -2,6 +2,7 @@
 #define __TLINKEDLIST_H__
 
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -36,9 +37,13 @@ public:
     // iterator erase( const_iterator pos );(since C++11)
     // iterator erase( iterator first, iterator last );(until C++11)
     // iterator erase( const_iterator first, const_iterator last );(since C++11)
-
     void push_back( const T& value );
-
+    // iterator emplace_back() //TODO: iterator 구현 후에
+    void pop_back();
+    void push_front( const T& value );//TODO: insert함수 앞에 삽입하는 메소드 구현 후에
+    void pop_front();
+    void resize( int count );
+    // void swap( list& other ); //(until C++17) //TODO:
 
     TNODE<T> *CreateNode();
     virtual void RemoveAllNodes();
@@ -104,6 +109,58 @@ void TLinkedList<T>::push_back(const T& value)
 {
     InsertNodeAtEnd(value);
 }
+
+template<typename T>
+void TLinkedList<T>::pop_back()
+{
+    // assert(size() > 0);//if empty, exit program
+    RemoveNode(GetLength()-1);
+}
+
+template<typename T>
+void TLinkedList<T>::push_front(const T& value)
+{
+    //TODO:
+}
+
+template<typename T>
+void TLinkedList<T>::pop_front()
+{
+    assert(size() > 0);//if empty, exit program
+    RemoveNode(0);
+}
+
+template<typename T>
+void TLinkedList<T>::resize(int count)
+{
+    if (count > size())
+    {
+        while(count > size())
+        {
+            T nullValue = NULL;
+            push_back(nullValue);
+        }
+    }
+    else if(count < size())
+    {
+        int removeCount = size() - count;
+        for(int i = 0; i < removeCount; i++)
+        {
+            pop_back();
+        }
+    }
+    else
+    {
+        return;
+    }
+}
+
+//(until C++17)
+// template<typename T>
+// void TLinkedList<T>::swap( T& other )
+// {
+
+// }
 
 template<typename T>
 TNODE<T> *TLinkedList<T>::CreateNode()
