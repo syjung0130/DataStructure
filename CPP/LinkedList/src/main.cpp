@@ -141,6 +141,7 @@ void TestTemplateList()
     sList.PrintList();
     cout << "sList is empty: " << sList.empty() <<endl;
     sList.resize(1);
+    sList.PrintList();
     sList.pop_back();
     // sList.pop_front();
     // sList.PrintList();
