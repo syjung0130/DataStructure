@@ -2,6 +2,7 @@
 #define __TLINKEDLIST_H__
 
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -22,23 +23,44 @@ class TLinkedList
 public:
     TLinkedList();
     virtual ~TLinkedList();
+    
+    //Capacity
+    bool empty();
+    int size();
+
+    //Modifiers
+    void clear();
+    //TODO: 아래 메소드들은 Iterator 구현 후에
+    // void insert();//TODO: iterator 구현 후에
+    // iterator emplace( const_iterator pos, Args&&... args ); //TODO: iterator 구현 후에
+    // iterator erase( iterator pos ); (until C++11)
+    // iterator erase( const_iterator pos );(since C++11)
+    // iterator erase( iterator first, iterator last );(until C++11)
+    // iterator erase( const_iterator first, const_iterator last );(since C++11)
+    void push_back( const T& value );
+    // iterator emplace_back() //TODO: iterator 구현 후에
+    void pop_back();
+    void push_front( const T& value );//TODO: insert함수 앞에 삽입하는 메소드 구현 후에
+    void pop_front();
+    void resize( int count );
+    // void swap( list& other ); //(until C++17) //TODO:
+
+    void PrintList();
+    // TODO: []연산자 오버로딩까지 해보자
+private:
+    int mLength;
+    TNODE<T> *m_pHead;
+
     TNODE<T> *CreateNode();
     virtual void RemoveAllNodes();
-    virtual void InsertNodeAtEnd(T data);
+    virtual void InsertNodeAtEnd(const T& data);
     virtual void RemoveNode(int index);
     void copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE);
-    void PrintList();
     int GetLength();
     void IncreaseLength();
     void DecreaseLength();
 
-    // TODO:
-    // 추후에는 위 메서드들을 private으로 옮기고
-    // std::list의 insert(), erase()메서드를 구현해보고 
-    //[]연산자 오버로딩까지 해보자
-private:
-    int mLength;
-    TNODE<T> *m_pHead;
+
 };
 
 template<typename T>
@@ -55,6 +77,89 @@ TLinkedList<T>::~TLinkedList()
     cout << "~TLinkedList()" << endl;
     RemoveAllNodes();
 }
+
+template<typename T>
+bool TLinkedList<T>::empty()
+{
+    if(GetLength() > 0) 
+    {
+        return false;
+    }
+    else 
+    {
+        return true;
+    }
+}
+
+template<typename T>
+int TLinkedList<T>::size()
+{
+    return GetLength();
+}
+
+template<typename T>
+void TLinkedList<T>::clear()
+{
+    RemoveAllNodes();
+}
+
+template<typename T>
+void TLinkedList<T>::push_back(const T& value)
+{
+    InsertNodeAtEnd(value);
+}
+
+template<typename T>
+void TLinkedList<T>::pop_back()
+{
+    // assert(size() > 0);//if empty, exit program
+    RemoveNode(GetLength()-1);
+}
+
+template<typename T>
+void TLinkedList<T>::push_front(const T& value)
+{
+    //TODO:
+}
+
+template<typename T>
+void TLinkedList<T>::pop_front()
+{
+    assert(size() > 0);//if empty, exit program
+    RemoveNode(0);
+}
+
+template<typename T>
+void TLinkedList<T>::resize(int count)
+{
+    if (count > size())
+    {
+        while(count > size())
+        {
+            T nullValue = NULL;
+            push_back(nullValue);
+        }
+    }
+    else if(count < size())
+    {
+        int removeCount = size() - count;
+        for(int i = 0; i < removeCount; i++)
+        {
+            pop_back();
+        }
+    }
+    else
+    {
+        return;
+    }
+}
+
+//(until C++17)
+// template<typename T>
+// void TLinkedList<T>::swap( T& other )
+// {
+
+// }
 
 template<typename T>
 TNODE<T> *TLinkedList<T>::CreateNode()
@@ -88,7 +193,7 @@ void TLinkedList<T>::RemoveAllNodes()
 }
 
 template<typename T>
-void TLinkedList<T>::InsertNodeAtEnd(T data)
+void TLinkedList<T>::InsertNodeAtEnd(const T& data)
 {
     TNODE<T> *pNODE = CreateNode();
     pNODE->data = data;

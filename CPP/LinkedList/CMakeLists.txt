@@ -4,8 +4,7 @@ cmake_minimum_required(VERSION 3.0)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Chapter 04
-set(APP_EXE coding_interview)
+set(APP_EXE my_template_list)
 set(SRC_DIR src)
 set(HDR_DIR hdr)
 set(SOURCES ${SRC_DIR}/main.cpp ${SRC_DIR}/SimpleLinkedList.cpp ${SRC_DIR}/DoubleLinkedList.cpp ${SRC_DIR}/LinkedList.cpp)
