@@ -45,23 +45,22 @@ public:
     void resize( int count );
     // void swap( list& other ); //(until C++17) //TODO:
 
+    void PrintList();
+    // TODO: []연산자 오버로딩까지 해보자
+private:
+    int mLength;
+    TNODE<T> *m_pHead;
+
     TNODE<T> *CreateNode();
     virtual void RemoveAllNodes();
     virtual void InsertNodeAtEnd(const T& data);
     virtual void RemoveNode(int index);
     void copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE);
-    void PrintList();
     int GetLength();
     void IncreaseLength();
     void DecreaseLength();
 
-    // TODO:
-    // 추후에는 위 메서드들을 private으로 옮기고
-    // std::list의 insert(), erase()메서드를 구현해보고 
-    //[]연산자 오버로딩까지 해보자
-private:
-    int mLength;
-    TNODE<T> *m_pHead;
+
 };
 
 template<typename T>
