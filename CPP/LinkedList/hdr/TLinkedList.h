@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <string.h>
 
 using namespace std;
 
@@ -47,6 +48,8 @@ public:
 
     void PrintList();
     // TODO: []연산자 오버로딩까지 해보자
+    TLinkedList<T>& operator=(TLinkedList<T>& rObj);
+
 private:
     int mLength;
     TNODE<T> *m_pHead;
@@ -59,8 +62,6 @@ private:
     int GetLength();
     void IncreaseLength();
     void DecreaseLength();
-
-
 };
 
 template<typename T>
@@ -283,6 +284,23 @@ void TLinkedList<T>::PrintList()
         pNODE = pNODE->next;
     }
     cout << "####################" << endl;
+}
+
+template<typename T>
+TLinkedList<T>& TLinkedList<T>::operator=(TLinkedList<T>& rObj)
+{
+    TNODE<T> *pNode = new TNODE<T>[10];
+    TNODE<T> *pCur = rObj.m_pHead;
+    for(int i = 0; i < rObj.size(); i++)
+    {
+        memcpy(&pNode[i], pCur, sizeof(*pCur));
+        pCur = pCur->next;
+    }
+
+    this->mLength = rObj.mLength;
+    this->m_pHead = rObj.m_pHead;
+
+    return *this;
 }
 
 template<typename T>

@@ -148,6 +148,13 @@ void TestTemplateList()
     // sList.pop_back();
     sList.PrintList();
     cout << "sList is empty: " << sList.empty() <<endl;
+
+    cout << "operator overloading check" << endl;
+    iList.push_back(22);
+    iList.push_back(33);
+    TLinkedList<int> iList2;
+    iList2 = iList;
+    iList2.PrintList();
 }
 
 int main ()
