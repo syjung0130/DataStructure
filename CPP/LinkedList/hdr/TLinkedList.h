@@ -121,7 +121,10 @@ void TLinkedList<T>::pop_back()
 template<typename T>
 void TLinkedList<T>::push_front(const T& value)
 {
-    //TODO:
+    TNODE<T> *newNode = CreateNode();
+    newNode->next = m_pHead;
+    newNode->data = value;
+    m_pHead = newNode;
 }
 
 template<typename T>

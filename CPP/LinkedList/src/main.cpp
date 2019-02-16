@@ -154,6 +154,7 @@ void TestTemplateList()
     iList.push_back(33);
     TLinkedList<int> iList2;
     iList2 = iList;
+    iList2.push_front(99);
     iList2.PrintList();
 
     cout << "iList2 [0], [1] : " << iList2[0] << ", " << iList2[1] << endl;
