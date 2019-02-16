@@ -4,6 +4,7 @@
 #include "TLinkedList.h"
 
 using namespace std;
+using namespace sy::list;
 
 //************
 // test scenario
@@ -149,15 +150,17 @@ void TestTemplateList()
     sList.PrintList();
     cout << "sList is empty: " << sList.empty() <<endl;
 
-    cout << "operator overloading check" << endl;
+    cout << "===== operator overloading check =====" << endl;
     iList.push_back(22);
     iList.push_back(33);
     TLinkedList<int> iList2;
     iList2 = iList;
     iList2.push_front(99);
     iList2.PrintList();
-
     cout << "iList2 [0], [1] : " << iList2[0] << ", " << iList2[1] << endl;
+    iList2 << 5;
+    iList2 << 9;
+    cout << iList2;
 }
 
 int main ()

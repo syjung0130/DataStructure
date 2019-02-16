@@ -26,8 +26,8 @@ public:
     virtual ~TLinkedList();
     
     //Capacity
-    bool empty();
-    int size();
+    bool empty() const;
+    int size() const;
 
     //Modifiers
     void clear();
@@ -49,6 +49,10 @@ public:
     void PrintList();
     TLinkedList<T>& operator=(TLinkedList<T>& rObj);
     T& operator[](const int& index) const;
+    template<typename U>
+    friend ostream& operator<<(ostream& os, const TLinkedList<U>& tList);
+    template<typename U>
+    friend TLinkedList<U>& operator<<(TLinkedList<U>& tList, const U& item);
 
 private:
     int mLength;
@@ -60,7 +64,7 @@ private:
     virtual void RemoveNode(int index);
     TNODE<T> *GetNode(const int& index) const;
     void copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE);
-    int GetLength();
+    int GetLength() const;
     void IncreaseLength();
     void DecreaseLength();
 };
@@ -81,7 +85,7 @@ TLinkedList<T>::~TLinkedList()
 }
 
 template<typename T>
-bool TLinkedList<T>::empty()
+bool TLinkedList<T>::empty() const
 {
     if(GetLength() > 0) 
     {
@@ -94,7 +98,7 @@ bool TLinkedList<T>::empty()
 }
 
 template<typename T>
-int TLinkedList<T>::size()
+int TLinkedList<T>::size() const
 {
     return GetLength();
 }
@@ -221,7 +225,6 @@ void TLinkedList<T>::InsertNodeAtEnd(const T& data)
     IncreaseLength();
 }
 
-
 template<typename T>
 void TLinkedList<T>::RemoveNode(int index)
 {
@@ -316,6 +319,35 @@ T& TLinkedList<T>::operator[](const int& index) const
 }
 
 template<typename T>
+std::ostream& operator<<(std::ostream& os, const TLinkedList<T>& tList)
+{
+    for(int i = 0; i < tList.size(); i++)
+    {
+        os << tList[i];
+        if(i == (tList.size()-1))
+        {
+            os << endl;
+        }
+        else
+        {
+            os << ",\t";
+            if ((i % 5) == 0)
+            {
+                os << endl;
+            }
+        }
+    }
+    return os;
+}
+
+template<typename T>
+TLinkedList<T>& operator<<(TLinkedList<T>& tList, const T& item)
+{
+    tList.push_back(item);
+    return tList;
+}
+
+template<typename T>
 TNODE<T>* TLinkedList<T>::GetNode(const int& index) const
 {
     TNODE<T>* curNode = m_pHead;
@@ -327,7 +359,7 @@ TNODE<T>* TLinkedList<T>::GetNode(const int& index) const
 }
 
 template<typename T>
-int TLinkedList<T>::GetLength()
+int TLinkedList<T>::GetLength() const
 {
     return mLength;
 }
