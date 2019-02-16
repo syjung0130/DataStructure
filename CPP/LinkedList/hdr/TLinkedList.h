@@ -47,8 +47,8 @@ public:
     // void swap( list& other ); //(until C++17) //TODO:
 
     void PrintList();
-    // TODO: []연산자 오버로딩까지 해보자
     TLinkedList<T>& operator=(TLinkedList<T>& rObj);
+    T& operator[](const int& index) const;
 
 private:
     int mLength;
@@ -58,6 +58,7 @@ private:
     virtual void RemoveAllNodes();
     virtual void InsertNodeAtEnd(const T& data);
     virtual void RemoveNode(int index);
+    TNODE<T> *GetNode(const int& index) const;
     void copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE);
     int GetLength();
     void IncreaseLength();
@@ -301,6 +302,25 @@ TLinkedList<T>& TLinkedList<T>::operator=(TLinkedList<T>& rObj)
     this->m_pHead = rObj.m_pHead;
 
     return *this;
+}
+
+template<typename T>
+T& TLinkedList<T>::operator[](const int& index) const
+{
+    // cout << "operator[](): " << index << endl;
+    TNODE<T>* targetNode = GetNode(index);
+    return targetNode->data;
+}
+
+template<typename T>
+TNODE<T>* TLinkedList<T>::GetNode(const int& index) const
+{
+    TNODE<T>* curNode = m_pHead;
+    for(int i = 0; i < index; i++)
+    {
+        curNode = curNode->next;
+    }
+    return curNode;
 }
 
 template<typename T>
