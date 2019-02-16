@@ -41,7 +41,7 @@ public:
     void push_back( const T& value );
     // iterator emplace_back() //TODO: iterator 구현 후에
     void pop_back();
-    void push_front( const T& value );//TODO: insert함수 앞에 삽입하는 메소드 구현 후에
+    void push_front( const T& value );
     void pop_front();
     void resize( int count );
     // void swap( list& other ); //(until C++17) //TODO:
