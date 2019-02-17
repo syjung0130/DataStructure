@@ -47,7 +47,10 @@ public:
     // void swap( list& other ); //(until C++17) //TODO:
 
     void PrintList();
-    TLinkedList<T>& operator=(TLinkedList<T>& rObj);
+    TLinkedList<T>& operator=(const TLinkedList<T>& rObj);
+    // template<typename U>
+    // friend TLinkedList<U>& operator=(TLinkedList<U>& lObj, const TLinkedList<U>& rObj);
+
     T& operator[](const int& index) const;
     template<typename U>
     friend ostream& operator<<(ostream& os, const TLinkedList<U>& tList);
@@ -59,7 +62,6 @@ private:
     TNODE<T> *m_pHead;
 
     TNODE<T> *CreateNode();
-    virtual void RemoveAllNodes();
     virtual void InsertNodeAtEnd(const T& data);
     virtual void RemoveNode(int index);
     TNODE<T> *GetNode(const int& index) const;
@@ -67,6 +69,7 @@ private:
     int GetLength() const;
     void IncreaseLength();
     void DecreaseLength();
+    virtual void RemoveAllNodes();
 };
 
 template<typename T>
@@ -129,6 +132,7 @@ void TLinkedList<T>::push_front(const T& value)
     newNode->next = m_pHead;
     newNode->data = value;
     m_pHead = newNode;
+    IncreaseLength();
 }
 
 template<typename T>
@@ -183,21 +187,23 @@ TNODE<T> *TLinkedList<T>::CreateNode()
 template<typename T>
 void TLinkedList<T>::RemoveAllNodes()
 {
-    cout << "RemoveAllNodes()" << endl;
+    cout << "RemoveAllNodes() size: " << GetLength() << endl;
     if (GetLength() == 0) 
     {
         return;
     }
-    while (m_pHead->next != nullptr)
+    TNODE<T> *pCur = m_pHead;
+    TNODE<T> *pTempNode = pCur;
+    while (pCur->next != nullptr)
     {
-        printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
-        TNODE<T> *tempNode = m_pHead;
-        m_pHead = m_pHead->next;
-        delete tempNode;
+        pTempNode = pCur;
+        pCur = pCur->next;
+        printf("RemoveAllNodes(): free momory - cur(0x%2X), tempNode(0x%2X), data(%d)\n", pCur, pTempNode, pTempNode->data);
+        delete pTempNode;
         DecreaseLength();
     }
-    printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", m_pHead, m_pHead->data);
-    delete m_pHead;
+    printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", pCur, pCur->data);
+    delete pCur;
     DecreaseLength();
 }
 
@@ -294,18 +300,13 @@ void TLinkedList<T>::PrintList()
 }
 
 template<typename T>
-TLinkedList<T>& TLinkedList<T>::operator=(TLinkedList<T>& rObj)
+TLinkedList<T>& TLinkedList<T>::operator=(const TLinkedList<T>& rObj)
 {
-    TNODE<T> *pNode = new TNODE<T>[10];
-    TNODE<T> *pCur = rObj.m_pHead;
-    for(int i = 0; i < rObj.size(); i++)
+    cout << "[TLinkedList::operator=()] lLength, rLength: " << this->mLength << ", " << rObj.size() << endl;
+    for (int i = 0; i < rObj.size(); i++)
     {
-        memcpy(&pNode[i], pCur, sizeof(*pCur));
-        pCur = pCur->next;
+        this->push_back(rObj[i]);
     }
-
-    this->mLength = rObj.mLength;
-    this->m_pHead = rObj.m_pHead;
 
     return *this;
 }
@@ -321,21 +322,12 @@ T& TLinkedList<T>::operator[](const int& index) const
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const TLinkedList<T>& tList)
 {
-    for(int i = 0; i < tList.size(); i++)
+    TNODE<T> *pNODE = tList.m_pHead;
+
+    while(pNODE != nullptr)
     {
-        os << tList[i];
-        if(i == (tList.size()-1))
-        {
-            os << endl;
-        }
-        else
-        {
-            os << ",\t";
-            if ((i % 5) == 0)
-            {
-                os << endl;
-            }
-        }
+        os << fixed << pNODE->data << endl;
+        pNODE = pNODE->next;
     }
     return os;
 }
