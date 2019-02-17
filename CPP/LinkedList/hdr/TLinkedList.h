@@ -204,6 +204,7 @@ void TLinkedList<T>::RemoveAllNodes()
     }
     printf("RemoveAllNodes(): free momory - addr(0x%2X), data(%d)\n", pCur, pCur->data);
     delete pCur;
+    m_pHead = nullptr;
     DecreaseLength();
 }
 
