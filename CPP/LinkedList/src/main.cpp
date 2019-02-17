@@ -164,6 +164,10 @@ void TestTemplateList()
     iList2 << 9;
     cout << " << iList2:" << endl;
     cout << iList2;
+
+    TLinkedList<int> iList3(iList2);
+    cout << "iList3: " << endl;
+    cout << iList3 << endl;
 }
 
 int main ()

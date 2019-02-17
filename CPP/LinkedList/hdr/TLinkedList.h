@@ -23,6 +23,7 @@ class TLinkedList
 {
 public:
     TLinkedList();
+    TLinkedList(const TLinkedList<T>& tList);
     virtual ~TLinkedList();
     
     //Capacity
@@ -63,7 +64,7 @@ private:
     virtual void InsertNodeAtEnd(const T& data);
     virtual void RemoveNode(int index);
     TNODE<T> *GetNode(const int& index) const;
-    void copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE);
+    void copyNodes(const TLinkedList<T> &tList);
     int GetLength() const;
     void IncreaseLength();
     void DecreaseLength();
@@ -76,6 +77,14 @@ TLinkedList<T>::TLinkedList()
  m_pHead(nullptr)
 {
     cout << "TLinkedList()" << endl;
+}
+
+template<typename T>
+TLinkedList<T>::TLinkedList(const TLinkedList<T> &tList)
+ :mLength(0),
+ m_pHead(nullptr)
+{
+    copyNodes(tList);
 }
 
 template<typename T>
@@ -273,9 +282,13 @@ void TLinkedList<T>::RemoveNode(int index)
 }
 
 template<typename T>
-void TLinkedList<T>::copyNode(TNODE<T> *destNode, TNODE<T> *srcNODE)
+void TLinkedList<T>::copyNodes(const TLinkedList<T>& tList)
 {
-
+    cout << "[TLinkedList::operator=()] lLength, rLength: " << this->mLength << ", " << tList.size() << endl;
+    for (int i = 0; i < tList.size(); i++)
+    {
+        this->push_back(tList[i]);
+    }
 }
 
 template<typename T>
@@ -302,11 +315,7 @@ template<typename T>
 TLinkedList<T>& TLinkedList<T>::operator=(const TLinkedList<T>& rList)
 {
     cout << "[TLinkedList::operator=()] lLength, rLength: " << this->mLength << ", " << rList.size() << endl;
-    for (int i = 0; i < rList.size(); i++)
-    {
-        this->push_back(rList[i]);
-    }
-
+    copyNodes(rList);
     return *this;
 }
 
