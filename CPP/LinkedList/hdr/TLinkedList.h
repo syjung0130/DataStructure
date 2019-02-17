@@ -47,9 +47,7 @@ public:
     // void swap( list& other ); //(until C++17) //TODO:
 
     void PrintList();
-    TLinkedList<T>& operator=(const TLinkedList<T>& rObj);
-    // template<typename U>
-    // friend TLinkedList<U>& operator=(TLinkedList<U>& lObj, const TLinkedList<U>& rObj);
+    TLinkedList<T>& operator=(const TLinkedList<T>& rList);
 
     T& operator[](const int& index) const;
     template<typename U>
@@ -301,12 +299,12 @@ void TLinkedList<T>::PrintList()
 }
 
 template<typename T>
-TLinkedList<T>& TLinkedList<T>::operator=(const TLinkedList<T>& rObj)
+TLinkedList<T>& TLinkedList<T>::operator=(const TLinkedList<T>& rList)
 {
-    cout << "[TLinkedList::operator=()] lLength, rLength: " << this->mLength << ", " << rObj.size() << endl;
-    for (int i = 0; i < rObj.size(); i++)
+    cout << "[TLinkedList::operator=()] lLength, rLength: " << this->mLength << ", " << rList.size() << endl;
+    for (int i = 0; i < rList.size(); i++)
     {
-        this->push_back(rObj[i]);
+        this->push_back(rList[i]);
     }
 
     return *this;
